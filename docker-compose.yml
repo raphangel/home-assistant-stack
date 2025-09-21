@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   homeassistant:
     image: homeassistant/home-assistant:latest 
@@ -12,21 +11,3 @@ services:
       - /conteneurs/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-    networks:
-      - home_net
-
-  ha-component-kit:
-    image: ghcr.io/shannonhochkins/ha-component-kit:latest
-    container_name: ha_component_kit
-    restart: unless-stopped
-    ports:
-      - "8090:8090"
-    environment:
-      - HASS_URL=http://192.168.1.73:8123
-      - HASS_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhMmQwZmZiM2Y0YmI0Y2MxOGU2YTI0NGY0MTdmYzY4MyIsImlhdCI6MTc1ODQ4NjIwMSwiZXhwIjoyMDczODQ2MjAxfQ.g56EnDvyU9nf4kUrjeyeoraVDQ0iW2Qd_qk70nfWVNw
-    networks:
-      - home_net
-
-networks:
-  home_net:
-    driver: bridge
